@@ -6,21 +6,21 @@
     <title>Princípio Aditivo - Matemática Discreta</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" xintegrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #111827; /* bg-gray-900 */
-            color: #f3f4f6; /* text-gray-100 */
-            overflow-x: hidden; /* Prevent horizontal scroll */
+            background-color: #111827;
+            color: #f3f4f6;
+            overflow-x: hidden;
         }
         .techno-gradient {
-            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #2563eb 100%); /* blue gradients */
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #2563eb 100%);
         }
         .card {
-            background-color: #1f2937; /* bg-gray-800 */
-            border-radius: 0.75rem; /* rounded-xl */
-            padding: 1.5rem; /* p-6 */
+            background-color: #1f2937;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
@@ -29,35 +29,35 @@
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
         }
         .btn-primary {
-            background-color: #3b82f6; /* bg-blue-600 */
+            background-color: #3b82f6;
             color: white;
             padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem; /* rounded-lg */
+            border-radius: 0.5rem;
             font-weight: 600;
             transition: background-color 0.3s ease, transform 0.2s ease;
         }
         .btn-primary:hover {
-            background-color: #2563eb; /* bg-blue-700 */
+            background-color: #2563eb;
             transform: scale(1.05);
         }
         .input-field {
-            background-color: #374151; /* bg-gray-700 */
-            border: 1px solid #4b5563; /* border-gray-600 */
-            color: #f3f4f6; /* text-gray-100 */
-            border-radius: 0.5rem; /* rounded-lg */
+            background-color: #374151;
+            border: 1px solid #4b5563;
+            color: #f3f4f6;
+            border-radius: 0.5rem;
             padding: 0.75rem;
             width: 100%;
             transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
         .input-field:focus {
             outline: none;
-            border-color: #3b82f6; /* border-blue-600 */
+            border-color: #3b82f6;
             box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
         }
         .feedback-message {
-            margin-top: 1rem; /* mt-4 */
-            padding: 0.75rem; /* p-3 */
-            border-radius: 0.5rem; /* rounded-lg */
+            margin-top: 1rem;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
             font-weight: 600;
             text-align: center;
             opacity: 0;
@@ -69,14 +69,13 @@
             transform: translateY(0);
         }
         .feedback-correct {
-            background-color: #10b981; /* bg-green-500 */
+            background-color: #10b981;
             color: white;
         }
         .feedback-incorrect {
-            background-color: #ef4444; /* bg-red-500 */
+            background-color: #ef4444;
             color: white;
         }
-        /* Animation for sections appearing on scroll */
         .fade-in-section {
             opacity: 0;
             transform: translateY(20px);
@@ -158,15 +157,21 @@
 
                 <div class="card">
                     <h3 class="text-xl sm:text-2xl font-semibold text-blue-300 mb-4">
-                        Exercício 2: Sabores de Sorvete
+                        Exercício 2: Escolha de Cursos
                     </h3>
                     <p class="text-gray-300 mb-4">
-                        Uma sorveteria oferece 6 sabores de sorvete de frutas e 3 sabores de sorvete de chocolate. Se uma pessoa deseja escolher apenas <strong>UM</strong> sabor, quantas opções ela tem?
+                        Em uma universidade, um estudante pode escolher um curso de graduação que se enquadre em uma das seguintes áreas:
+                        <ul class="list-disc list-inside text-gray-200 mt-2 ml-4">
+                            <li>Ciências Exatas: 7 opções de cursos.</li>
+                            <li>Ciências Humanas: 5 opções de cursos.</li>
+                            <li>Ciências Biológicas: 4 opções de cursos.</li>
+                        </ul>
+                        Assumindo que um estudante só pode se matricular em <strong>UM</strong> curso, de quantas maneiras diferentes ele pode escolher sua área de estudo?
                     </p>
                     <div class="mt-4">
                         <label for="ex2-answer" class="block text-sm font-medium text-gray-400 mb-1">Sua Resposta:</label>
                         <input type="number" id="ex2-answer" class="input-field" placeholder="Digite o número">
-                        <button onclick="checkAnswer('ex2', 9)" class="btn-primary mt-3 w-full sm:w-auto">
+                        <button onclick="checkAnswer('ex2', 16)" class="btn-primary mt-3 w-full sm:w-auto">
                             <i class="fas fa-check mr-2"></i>Verificar Resposta
                         </button>
                         <div id="ex2-feedback" class="feedback-message"></div>
@@ -177,24 +182,20 @@
     </main>
 
     <footer class="mt-16 py-8 bg-gray-800 text-center">
-        <p class="text-gray-400">&copy; <span id="currentYear"></span> Princípio Aditivo - Matemática Discreta.</p>
+        <p class="text-gray-400">&copy; <span id="currentYear"></span> Princípio Aditivo - Matemática Discreta. Todos os direitos reservados.</p>
     </footer>
 
     <script>
-        // Function to check answer
         function checkAnswer(exerciseId, correctAnswer) {
             const userAnswer = parseInt(document.getElementById(exerciseId + '-answer').value);
             const feedbackElement = document.getElementById(exerciseId + '-feedback');
 
-            // Clear previous feedback classes and hide
             feedbackElement.classList.remove('feedback-correct', 'feedback-incorrect', 'show');
-            // Trigger reflow to restart animation
             void feedbackElement.offsetWidth;
-
 
             if (isNaN(userAnswer)) {
                 feedbackElement.innerHTML = '<i class="fas fa-exclamation-triangle mr-2"></i> Por favor, insira um número.';
-                feedbackElement.classList.add('feedback-incorrect'); // Or a different style for invalid input
+                feedbackElement.classList.add('feedback-incorrect');
             } else if (userAnswer === correctAnswer) {
                 feedbackElement.innerHTML = '<i class="fas fa-check-circle mr-2"></i> Resposta Correta! Parabéns!';
                 feedbackElement.classList.add('feedback-correct');
@@ -205,18 +206,14 @@
             feedbackElement.classList.add('show');
         }
 
-        // Set current year in footer
         document.getElementById('currentYear').textContent = new Date().getFullYear();
-        // Also update footer copyright text to match new title
         document.querySelector('footer p:first-of-type').innerHTML = `&copy; <span id="currentYear">${new Date().getFullYear()}</span> Princípio Aditivo - Matemática Discreta. Todos os direitos reservados.`;
 
-
-        // Intersection Observer for fade-in animations
         const sections = document.querySelectorAll('.fade-in-section');
         const options = {
-            root: null, // relative to document viewport
-            rootMargin: '0px', // margin around root. Values are similar to css property. Unitless values not allowed
-            threshold: 0.1 // visible amount of item shown in relation to root
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
         };
 
         const observer = new IntersectionObserver(function(entries, observer) {
@@ -225,7 +222,7 @@
                     return;
                 }
                 entry.target.classList.add('is-visible');
-                observer.unobserve(entry.target); // Optional: stop observing once it's visible
+                observer.unobserve(entry.target);
             });
         }, options);
 
