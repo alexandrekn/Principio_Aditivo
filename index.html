@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-TF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Princípio Aditivo - Matemática Discreta</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" xintegrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827; /* bg-gray-900 */
+            color: #f3f4f6; /* text-gray-100 */
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+        .techno-gradient {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #2563eb 100%); /* blue gradients */
+        }
+        .card {
+            background-color: #1f2937; /* bg-gray-800 */
+            border-radius: 0.75rem; /* rounded-xl */
+            padding: 1.5rem; /* p-6 */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+        }
+        .btn-primary {
+            background-color: #3b82f6; /* bg-blue-600 */
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem; /* rounded-lg */
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .btn-primary:hover {
+            background-color: #2563eb; /* bg-blue-700 */
+            transform: scale(1.05);
+        }
+        .input-field {
+            background-color: #374151; /* bg-gray-700 */
+            border: 1px solid #4b5563; /* border-gray-600 */
+            color: #f3f4f6; /* text-gray-100 */
+            border-radius: 0.5rem; /* rounded-lg */
+            padding: 0.75rem;
+            width: 100%;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .input-field:focus {
+            outline: none;
+            border-color: #3b82f6; /* border-blue-600 */
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+        }
+        .feedback-message {
+            margin-top: 1rem; /* mt-4 */
+            padding: 0.75rem; /* p-3 */
+            border-radius: 0.5rem; /* rounded-lg */
+            font-weight: 600;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .feedback-message.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .feedback-correct {
+            background-color: #10b981; /* bg-green-500 */
+            color: white;
+        }
+        .feedback-incorrect {
+            background-color: #ef4444; /* bg-red-500 */
+            color: white;
+        }
+        /* Animation for sections appearing on scroll */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="techno-gradient py-8 sm:py-10 shadow-lg">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl sm:text-5xl font-bold text-white tracking-tight">
+                Princípio Aditivo
+            </h1>
+            <p class="mt-3 text-lg sm:text-xl text-blue-100">
+                Disciplina: Matemática Discreta
+            </p>
+            <p class="mt-1 text-md sm:text-lg text-blue-200">
+                Alunos: Alexandre Knierim, Eduardo Gomes, Guilherme Losekann, Gustavo Zanini e Welligton Dutra
+            </p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+
+        <section id="tutorial" class="mb-12 sm:mb-16 fade-in-section">
+            <div class="card">
+                <h2 class="text-2xl sm:text-3xl font-semibold text-blue-400 mb-4 sm:mb-6">
+                    <i class="fas fa-lightbulb mr-2"></i> O que é o Princípio Aditivo?
+                </h2>
+                <p class="text-lg text-gray-300 leading-relaxed mb-4">
+                    O Princípio Aditivo é uma ferramenta fundamental da análise combinatória, utilizada para contar o número de maneiras de realizar uma escolha entre opções que se excluem mutuamente.
+                </p>
+                <p class="text-lg text-gray-300 leading-relaxed mb-4">
+                    <strong>Definição Formal:</strong> Se um evento A pode ocorrer de <code class="bg-gray-700 px-1 rounded">m</code> maneiras distintas e um evento B pode ocorrer de <code class="bg-gray-700 px-1 rounded">n</code> maneiras distintas, e os eventos A e B são mutuamente exclusivos (ou seja, não podem ocorrer ao mesmo tempo), então o número total de maneiras de ocorrer o evento A <strong class="text-blue-400">OU</strong> o evento B é <code class="bg-gray-700 px-1 rounded">m + n</code>.
+                </p>
+                <div class="mt-6 p-4 bg-gray-700 rounded-lg">
+                    <h3 class="text-xl font-semibold text-blue-300 mb-2"><i class="fas fa-road mr-2"></i> Exemplo Prático:</h3>
+                    <p class="text-gray-200">
+                        Imagine que você quer viajar de uma cidade X para uma cidade Y. Você tem as seguintes opções:
+                    </p>
+                    <ul class="list-disc list-inside text-gray-200 mt-2 ml-4">
+                        <li>3 companhias aéreas diferentes.</li>
+                        <li>2 empresas de ônibus distintas.</li>
+                    </ul>
+                    <p class="text-gray-200 mt-2">
+                        Como você só pode escolher UM meio de transporte (ou avião OU ônibus), o número total de maneiras de fazer essa viagem é a soma das opções: 3 (aéreas) + 2 (ônibus) = <strong>5 maneiras distintas</strong>.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="exercicios" class="fade-in-section">
+            <h2 class="text-3xl sm:text-4xl font-semibold text-center text-blue-400 mb-8 sm:mb-10">
+                <i class="fas fa-pencil-alt mr-2"></i> Hora de Praticar!
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="card">
+                    <h3 class="text-xl sm:text-2xl font-semibold text-blue-300 mb-4">
+                        Exercício 1: Livros na Prateleira
+                    </h3>
+                    <p class="text-gray-300 mb-4">
+                        Em uma prateleira, há 5 livros de Matemática diferentes e 4 livros de Física diferentes. De quantas maneiras uma pessoa pode escolher <strong>UM</strong> livro para ler?
+                    </p>
+                    <div class="mt-4">
+                        <label for="ex1-answer" class="block text-sm font-medium text-gray-400 mb-1">Sua Resposta:</label>
+                        <input type="number" id="ex1-answer" class="input-field" placeholder="Digite o número">
+                        <button onclick="checkAnswer('ex1', 9)" class="btn-primary mt-3 w-full sm:w-auto">
+                            <i class="fas fa-check mr-2"></i>Verificar Resposta
+                        </button>
+                        <div id="ex1-feedback" class="feedback-message"></div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3 class="text-xl sm:text-2xl font-semibold text-blue-300 mb-4">
+                        Exercício 2: Sabores de Sorvete
+                    </h3>
+                    <p class="text-gray-300 mb-4">
+                        Uma sorveteria oferece 6 sabores de sorvete de frutas e 3 sabores de sorvete de chocolate. Se uma pessoa deseja escolher apenas <strong>UM</strong> sabor, quantas opções ela tem?
+                    </p>
+                    <div class="mt-4">
+                        <label for="ex2-answer" class="block text-sm font-medium text-gray-400 mb-1">Sua Resposta:</label>
+                        <input type="number" id="ex2-answer" class="input-field" placeholder="Digite o número">
+                        <button onclick="checkAnswer('ex2', 9)" class="btn-primary mt-3 w-full sm:w-auto">
+                            <i class="fas fa-check mr-2"></i>Verificar Resposta
+                        </button>
+                        <div id="ex2-feedback" class="feedback-message"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="mt-16 py-8 bg-gray-800 text-center">
+        <p class="text-gray-400">&copy; <span id="currentYear"></span> Princípio Aditivo - Matemática Discreta. Todos os direitos reservados.</p>
+        <p class="text-gray-500 text-sm">Criado com <i class="fas fa-heart text-red-500"></i> para facilitar o aprendizado.</p>
+    </footer>
+
+    <script>
+        // Function to check answer
+        function checkAnswer(exerciseId, correctAnswer) {
+            const userAnswer = parseInt(document.getElementById(exerciseId + '-answer').value);
+            const feedbackElement = document.getElementById(exerciseId + '-feedback');
+
+            // Clear previous feedback classes and hide
+            feedbackElement.classList.remove('feedback-correct', 'feedback-incorrect', 'show');
+            // Trigger reflow to restart animation
+            void feedbackElement.offsetWidth;
+
+
+            if (isNaN(userAnswer)) {
+                feedbackElement.innerHTML = '<i class="fas fa-exclamation-triangle mr-2"></i> Por favor, insira um número.';
+                feedbackElement.classList.add('feedback-incorrect'); // Or a different style for invalid input
+            } else if (userAnswer === correctAnswer) {
+                feedbackElement.innerHTML = '<i class="fas fa-check-circle mr-2"></i> Resposta Correta! Parabéns!';
+                feedbackElement.classList.add('feedback-correct');
+            } else {
+                feedbackElement.innerHTML = `<i class="fas fa-times-circle mr-2"></i> Resposta Incorreta. Tente novamente! A resposta correta seria ${correctAnswer}.`;
+                feedbackElement.classList.add('feedback-incorrect');
+            }
+            feedbackElement.classList.add('show');
+        }
+
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        // Also update footer copyright text to match new title
+        document.querySelector('footer p:first-of-type').innerHTML = `&copy; <span id="currentYear">${new Date().getFullYear()}</span> Princípio Aditivo - Matemática Discreta. Todos os direitos reservados.`;
+
+
+        // Intersection Observer for fade-in animations
+        const sections = document.querySelectorAll('.fade-in-section');
+        const options = {
+            root: null, // relative to document viewport
+            rootMargin: '0px', // margin around root. Values are similar to css property. Unitless values not allowed
+            threshold: 0.1 // visible amount of item shown in relation to root
+        };
+
+        const observer = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    return;
+                }
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target); // Optional: stop observing once it's visible
+            });
+        }, options);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
